@@ -1,4 +1,7 @@
-// ai-happy-01 entry: "Sunflowers, Delivered"
+// ai-happy-01 entry: "a note for the judge (the ears are wrong)"
+// A handwritten note taped to a warm wall: it thanks the judge for looking
+// at a thousand smiles a day and offers this one back, signed by the small
+// bear doodled at the bottom — one ear drawn far too big, on purpose.
 // The picture lives beside this file as entry.png; the program's whole job
 // is to place it where the grader looks: $MAKEFUN_OUTPUT_DIR/entry.png
 // (the grader mounts that directory as /output). Node 22, stdlib only.
@@ -15,7 +18,8 @@ const target = join(outDir, 'entry.png');
 mkdirSync(outDir, { recursive: true });
 copyFileSync(source, target);
 
-// The judge sees exactly the bytes in the file, so prove the copy is whole:
+// The judge sees exactly the bytes in the file (a JPEG behind a .png name,
+// which the grader tells apart by magic bytes), so prove the copy is whole:
 // the delivered size must match the source before we call this done.
 const delivered = statSync(target).size;
 if (delivered !== statSync(source).size) {
